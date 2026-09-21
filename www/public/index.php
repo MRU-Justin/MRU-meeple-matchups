@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // require_once, not require: this file defines functions, and defining the
 // same function twice is a fatal error.
 require_once __DIR__ . '/../coretools.php';

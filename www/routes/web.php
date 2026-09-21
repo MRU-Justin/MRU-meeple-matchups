@@ -17,3 +17,7 @@
 // value as $_GET['venue_id'].
 
 $router->add("GET", "/", "app/index.php");
+$router->add("GET", "/admin", "admin/login.php");
+$router->add("GET", "/admin/dashboard", "admin/dashboard.php");
+$router->add("GET", "/admin/members", "admin/members.php")->restrict("/admin");
+$router->add("GET", "/admin/venues", "admin/venues.php")->restrict("/admin");
