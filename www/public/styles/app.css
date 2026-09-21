@@ -1,0 +1,101 @@
+:root {
+  --ink: #1a1a23;
+  --ink-soft: #55555f;
+  --rule: #dcdce2;
+  --surface: #f4f4f7;
+  --accent: #454a8c;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+main {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  margin: 2.5rem 0 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+.lede {
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+}
+
+dl {
+  margin: 0;
+  display: grid;
+  gap: 0.75rem 1.5rem;
+}
+
+dt {
+  font-family: ui-monospace, Consolas, "Liberation Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+dd {
+  margin: 0 0 0.5rem;
+  color: var(--ink-soft);
+}
+
+code {
+  font-family: ui-monospace, Consolas, "Liberation Mono", monospace;
+  font-size: 0.87em;
+  background: var(--surface);
+  padding: 0.1em 0.35em;
+}
+
+.demo {
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+  padding: 0.9rem 1rem;
+  font-family: ui-monospace, Consolas, "Liberation Mono", monospace;
+  font-size: 0.85rem;
+  overflow-x: auto;
+}
+
+a {
+  color: var(--accent);
+}
+
+@media (min-width: 34rem) {
+  dl {
+    grid-template-columns: 14rem 1fr;
+  }
+
+  dd {
+    margin-bottom: 0;
+  }
+}
