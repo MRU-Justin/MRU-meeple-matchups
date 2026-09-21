@@ -1,0 +1,55 @@
+name: CI
+
+# Runs on every push and pull request. Three things get checked:
+#
+#   1. Every PHP file parses.
+#   2. The framework rules in README.md are followed.
+#   3. The site actually boots and responds correctly.
+#
+# If this goes red, something is wrong that you want to know about now.
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  php:
+    name: PHP
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: pdo_sqlite, sqlite3
+
+      - name: Syntax check
+        run: php scripts/lint-php.php
+
+      - name: Framework rules
+        run: php scripts/check-framework.php
+
+      - name: Smoke test
+        run: php scripts/smoke-test.php
+
+  javascript:
+    name: JavaScript
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          # ESLint 10 requires ^20.19 || ^22.13 || >=24.
+          node-version: "22"
+
+      - name: Install
+        run: npm install
+
+      - name: ESLint
+        run: npm run lint

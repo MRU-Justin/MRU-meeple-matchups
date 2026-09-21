@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint www/public/js --no-error-on-unmatched-pattern",
+    "lint:fix": "eslint www/public/js --fix --no-error-on-unmatched-pattern",
+    "lint:php": "php scripts/lint-php.php",
+    "format": "prettier --write www/public/js www/public/styles",
+    "format:check": "prettier --check www/public/js www/public/styles",
+    "check": "php scripts/check-framework.php",
+    "smoke": "php scripts/smoke-test.php",
+    "serve": "php -S localhost:8000 -t www/public www/public/index.php"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-unicorn": "^73.0.0",
+    "globals": "^17.11.0",
+    "prettier": "^3.9.6"
+  }
+}

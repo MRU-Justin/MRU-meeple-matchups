@@ -1,0 +1,21 @@
+.DS_Store
+
+# AI assistant configuration is personal to each developer.
+.claude/
+CLAUDE.local.md
+
+# The database file is generated -- see database/README.md. What's committed
+# is schema.sql, seed.sql and build.php, which are the recipe for making it.
+/database/*.db
+/database/*.db.bak
+/database/*.sqlite
+
+# Keep the log directories, ignore what lands in them.
+# (Git cannot re-include a file whose parent directory is excluded, so each
+# level has to be re-included on its own before the file can be.)
+/logs/*
+!/logs/xdebug/
+/logs/xdebug/*
+!/logs/xdebug/.gitkeep
+
+node_modules/
