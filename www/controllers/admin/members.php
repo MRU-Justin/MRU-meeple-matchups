@@ -1,4 +1,5 @@
 <?php
+
 /**
 
  * Admin login controller.
@@ -22,3 +23,4 @@
  * To verify that a login attempt is valid, you must use PHP's password_verify() function.
  */
 
+view('admin/members', []);
