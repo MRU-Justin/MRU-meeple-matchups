@@ -26,6 +26,8 @@ CREATE TABLE games (
 
 -- COLLATE NOCASE on title is what lets an index actually be used for the
 -- case-insensitive prefix search your title-search endpoint needs.
+
+-- **UNIQUE WHERE TO USE**
 CREATE INDEX idx_games_title ON games (title);
 
 CREATE TABLE venues (
@@ -66,3 +68,62 @@ CREATE INDEX idx_venues_province ON venues (province);
 --     you mean; I read this file in December to understand your design.
 --
 -- ===========================================================================
+
+CREATE TABLE administrators (
+    id                INTEGER PRIMARY KEY AUTOINCREMENT,
+    email             TEXT    NOT NULL UNIQUE COLLATE NOCASE,
+    digest            TEXT    NOT NULL,
+    last_login_at     TEXT,
+    previous_login_at TEXT
+);
+
+CREATE TABLE members (
+    id                INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name        TEXT    NOT NULL,
+    last_name         TEXT    NOT NULL,
+    email             TEXT    NOT NULL UNIQUE COLLATE NOCASE,
+    cell_phone        TEXT,
+    plan_type         TEXT NOT NULL CHECK (plan_type IN ('standard', 'premium')),
+    preferred_contact TEXT NOT NULL CHECK (preferred_contact IN ('email', 'cell_phone')),
+    enrolled_on       TEXT NOT NULL
+);
+
+CREATE TABLE plays (
+    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+    logged_by_member_id INTEGER NOT NULL REFERENCES members (id),
+    game_id             INTEGER NOT NULL REFERENCES games (id),
+    venue_id            INTEGER NOT NULL REFERENCES venues (id),
+    played_on           TEXT    NOT NULL
+);
+
+CREATE TABLE play_players (
+    play_id           INTEGER NOT NULL REFERENCES plays (id),
+    member_id         INTEGER NOT NULL REFERENCES members (id),
+    score             INTEGER NOT NULL,
+    PRIMARY KEY (play_id, member_id)
+);
+
+CREATE TABLE venue_featured_games (
+    venue_id          INTEGER NOT NULL REFERENCES venues (id),
+    game_id           INTEGER NOT NULL REFERENCES games (id),
+    PRIMARY KEY (venue_id, game_id)
+);
+
+CREATE TABLE member_preferred_venues (
+    member_id         INTEGER NOT NULL REFERENCES members (id),
+    venue_id          INTEGER NOT NULL REFERENCES venues (id),
+    PRIMARY KEY (member_id, venue_id)
+);
+
+CREATE TABLE wishlist_items (
+    member_id         INTEGER NOT NULL REFERENCES members (id),
+    game_id           INTEGER NOT NULL REFERENCES games (id),
+    PRIMARY KEY (member_id, game_id)
+);
+
+CREATE TABLE connections (
+    member_id         INTEGER NOT NULL REFERENCES members (id),
+    connected_member_id INTEGER NOT NULL REFERENCES members (id),
+    PRIMARY KEY (member_id, connected_member_id),
+    CHECK (member_id <> connected_member_id)
+);
