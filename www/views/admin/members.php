@@ -1,3 +1,10 @@
+<?php
+
+/**
+ * @var array $members
+ */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,71 +58,18 @@ view('partials/document-head', ['page_title' => 'Members', 'stylesheet' => '/sty
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Hardcoded data for WK-02 -->
-                        <tr>
-                            <td>Sir Flips-A-Lot</td>
-                            <td>coinflip.enthusiast@catmail.net</td>
-                            <td>403-HEADS-TAILS</td>
-                            <td><span class="badge badge-standard">Standard</span></td>
-                            <td>Jan 15, 2026</td>
-                            <td>247</td>
-                        </tr>
-                        <tr>
-                            <td>Professor Dice Roller PhD</td>
-                            <td>statistical.anomaly@rollmail.biz</td>
-                            <td>Does not own a phone</td>
-                            <td><span class="badge badge-standard">Standard</span></td>
-                            <td>Feb 20, 2026</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>Captain Meeple Bandit</td>
-                            <td>stole.ur.components@pirate.net</td>
-                            <td>403-ARR-HARR-HARR</td>
-                            <td><span class="badge badge-premium">Premium</span></td>
-                            <td>Jan 10, 2026</td>
-                            <td>1,847</td>
-                        </tr>
-                        <tr>
-                            <td>Toast McBreaderson</td>
-                            <td>buttered.side.down@toastville.com</td>
-                            <td>N/A (sent via telegram bird)</td>
-                            <td><span class="badge badge-standard">Standard</span></td>
-                            <td>Mar 05, 2026</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>Dr. Randomize Von Shuffleton III</td>
-                            <td>chaos.agent.supreme@entropy.edu</td>
-                            <td>403-SHUFFLE-UP</td>
-                            <td><span class="badge badge-premium">Premium</span></td>
-                            <td>Jan 20, 2026</td>
-                            <td>892</td>
-                        </tr>
-                        <tr>
-                            <td>Broken Rules Barry</td>
-                            <td>actually.ignored.instructions@rebel.net</td>
-                            <td>Unknown (plays own way)</td>
-                            <td><span class="badge badge-standard">Standard</span></td>
-                            <td>Feb 15, 2026</td>
-                            <td>64</td>
-                        </tr>
-                        <tr>
-                            <td>Whiskers the Tabby Cat</td>
-                            <td>paw.prints.only@meow.io</td>
-                            <td>Meow meow meow meow</td>
-                            <td><span class="badge badge-premium">Premium</span></td>
-                            <td>Jan 25, 2026</td>
-                            <td>15 (knocked pieces off table)</td>
-                        </tr>
-                        <tr>
-                            <td>Potato "The Strategist" Salad</td>
-                            <td>starchy.victory.lap@tuber.farm</td>
-                            <td>403-MASH-PLAYS</td>
-                            <td><span class="badge badge-premium">Premium</span></td>
-                            <td>Mar 01, 2026</td>
-                            <td>42</td>
-                        </tr>
+
+                        <?php foreach ($members as $member) : ?>
+                            <tr>
+                                <td><?= e($member['first_name'] . ' ' . $member['last_name']) ?></td>
+                                <td><?= e($member['email']) ?></td>
+                                <td><?= e($member['cell_phone'] ?? 'Not Provided') ?></td>
+                                <td><span class="badge badge-<?= e($member['plan_type']) ?>"><?= e(ucfirst($member['plan_type'])) ?></span></td>
+                                <td><?= e(date('M d, Y', strtotime($member['enrolled_on']))) ?></td>
+                                <td><?= e($member['total_plays']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+
                     </tbody>
                 </table>
             </div>
