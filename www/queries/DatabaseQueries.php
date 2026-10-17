@@ -52,9 +52,16 @@ class DatabaseQueries
         return $members;
     }
 
-    public funtion plays_by_month($this_month, $last_month)
+    public function plays_in_month(string $month)
     {
         $sql = <<<SQL
-            SELECT 
+            SELECT COUNT(*)
+            FROM plays
+            WHERE strftime('%Y-%m', played_on) = ?;
+            SQL;
+
+        $count = $this->db_helper->run($sql, [$month])->fetchColumn();
+
+        return $count;
     }
 }
