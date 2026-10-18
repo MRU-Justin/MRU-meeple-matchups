@@ -64,4 +64,19 @@ class DatabaseQueries
 
         return $count;
     }
+
+    public function avg_plays_per_member(string $month)
+    {
+        $sql = <<<SQL
+            SELECT m.plan_type, (COUNT(p.id) * 1.0 / COUNT(DISTINCT m.id), 1) AS avg_plays
+            FROM members m
+            LEFT JOIN plays_players pp ON pp.member_id = m.id
+            LEFT JOIN plays p ON p.id = pp.play_id AND strftime('%Y-%m', p.played_on) = ?
+            GROUP BY m.plan_type
+            ORDER BY m.plan_type;
+            SQL;
+
+        $averages = $this->db_helper->run($sql, [$month])->fetchAll();
+        return $averages;
+    }
 }
