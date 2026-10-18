@@ -1,3 +1,11 @@
+<?php
+
+/**
+ * @var int $plays_this_month
+ * @var int $plays_last_month
+ */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +34,15 @@ view('partials/document-head', ['page_title' => 'Dashboard', 'stylesheet' => '/s
                 <h2>Welcome, Admin</h2>
                 <p>Manage your board game venues and members from here.</p>
             </div>
+
+            <section class="analytics-card">
+                <h2>Plays Logged:</h2>
+                <br>
+                <p>This month: <strong><?= e($plays_this_month) ?></strong></p>
+                <p>Last month: <strong><?= e($plays_last_month) ?></strong></p>
+            </section>
+            <br>
+
 
             <!-- Quick Links -->
             <div class="quick-links">
