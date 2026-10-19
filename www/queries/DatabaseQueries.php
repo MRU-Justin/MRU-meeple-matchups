@@ -79,4 +79,19 @@ class DatabaseQueries
         $averages = $this->db_helper->run($sql, [$month])->fetchAll();
         return $averages;
     }
+
+    public function plays_by_weekday()
+    {
+        $sql = <<<SQL
+            SELECT CAST(strftime('%w', played_on) AS INTEGER) AS day_num,
+                   COUNT(*) AS play_count
+            FROM plays
+            GROUP BY day_num
+            ORDER BY day_num;
+            SQL;
+        $rows = $this->db_helper->run($sql)->fetchALL();
+
+        return $rows;
+    }
 }
+
