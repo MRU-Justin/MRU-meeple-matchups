@@ -1,0 +1,20 @@
+{
+    // VS Code offers these when you first open the project. None are
+    // mandatory, but each one makes something here actually work.
+    "recommendations": [
+        // PHP language support: completion, go-to-definition, and the squiggly
+        // underlines that catch typos before you reload the page.
+        "bmewburn.vscode-intelephense-client",
+
+        // Step debugging. Required by the configurations in launch.json.
+        "xdebug.php-debug",
+
+        // Applies .editorconfig, so indentation and line endings stay the same
+        // whether you are on Windows or a Mac.
+        "editorconfig.editorconfig",
+
+        // The JavaScript linter and formatter this project is set up for.
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+    ]
+}

@@ -1,0 +1,26 @@
+# Line endings, settled once, for everybody.
+#
+# Windows editors tend to write CRLF and macOS/Linux ones LF. Without this
+# file, that difference is decided by each person's local git config, so the
+# same repository behaves differently on different machines -- and switching
+# between them can show every line of every file as changed.
+#
+# Settings here live in the repository, so they apply to everyone who clones
+# it regardless of how their git is configured.
+
+# Treat everything as text, and check it out with LF endings everywhere.
+* text=auto eol=lf
+
+# Files git must never "fix" the line endings of, because they aren't text.
+# The SQLite database especially -- rewriting bytes inside it corrupts it.
+*.db    binary
+*.sqlite binary
+*.ico   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.woff  binary
+*.woff2 binary
+*.pdf   binary
