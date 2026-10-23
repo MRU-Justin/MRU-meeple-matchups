@@ -1,0 +1,13 @@
+schema: "classroom50/repo-config/v1"
+classroom: "mru-csis-3512-001-202604-proj-classroom"
+assignment: "the-project"
+secret: "loeb2tof"
+owner:
+  username: "MRU-Justin"
+  id: 179747904
+  accepted_at: "2026-10-21T16:37:49Z"
+source:
+  owner: "MRU-CSIS-3512-001-202604-PROJ"
+  owner_id: 313091597
+  repo: "the-project-template"
+  branch: "main"
